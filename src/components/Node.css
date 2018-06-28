@@ -1,0 +1,31 @@
+.TreeNode {
+  padding: 0.5rem 1rem;
+  margin-bottom: 0.5rem;
+  cursor: move;
+  opacity: 1;
+  position: relative;
+}
+
+.TreeNode-actions {
+  position: absolute;
+  right: 1rem;
+  top: 0.5rem;
+}
+
+.TreeNode-action-button {
+  height: auto !important;
+}
+
+.TreeNode--user {
+  background-color: pink;
+}
+
+.TreeNode--task {
+  background-color: greenyellow;
+  margin-left: 4rem;
+}
+
+.TreeNode--sub-task {
+  background-color: lightskyblue;
+  margin-left: 8rem;
+}
