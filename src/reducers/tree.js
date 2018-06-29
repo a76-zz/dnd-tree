@@ -5,15 +5,16 @@ import nodeType from 'types/node'
 import { findNodeView } from 'utils'
 
 // Flattened view of tree is more convenient for some type of operations 
-// It allows to keep data model clean from representational details and simplify rendering
+// It allows to keep data model clean from representational details and simplify rendering and drag and dropping
+// Flattened view is just and array of node views
 function flattenTree(node, result=[], id={ value: 0 }, level=-1, parent=undefined) {
   // Not necessary to flatten formal root node
   if (level > -1) {
-    result.push({
-      node,
-      level,
-      id: id.value,
-      parent
+    result.push({ // Each node view is an object of the following structure 
+      node, // Tree node
+      level, // Level of nesting
+      id: id.value, // Unique id
+      parent // It contains reference to the parent node to avoid searching of it via whole tree reviewing
     })
 
     id.value++
@@ -143,7 +144,7 @@ const insertSourceNode = (flattening, atIndex, sourceNode) => {
       node.children = children
       // We can proxibit insertion into collapsed node on the isPossibleDropping phase
       // But it may be less convenient for end user 
-      // So it is better just to expand collapsed group on the drop phase
+      // So it is better just to expand collapsed node on the drop phase
       node.expanded = true
       children.unshift(sourceNode)
     }
