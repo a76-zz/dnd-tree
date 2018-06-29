@@ -1,8 +1,8 @@
-Drag and drop implementation is base on the [React DnD library](http://react-dnd.github.io/react-dnd/)
-[Redux](https://redux.js.org/) is used for state management
+Drag and drop implementation is base on the [React DnD library](http://react-dnd.github.io/react-dnd/).
+[Redux](https://redux.js.org/) is used for state management.
 
-My goal is not just to create the shortest implementation but create scalable loosely coupled solution
-I believe that Redux or its alternatives are default architectural pattern of almost any react application today
+My goal is not just to create the shortest implementation but create scalable loosely coupled solution.
+I believe that Redux or its alternatives are default architectural pattern of almost any react application today.
 
 ## General idea
 
@@ -26,7 +26,7 @@ So it is required to perform revers operation from flatenization to the tree dat
 
 1. Node counter just displays number of childrens
 2. Additional descriptions such as User/Level etc. are missed
-3. Users are also draggables
+3. Users are also draggabled
 4. Dropping after collapsed nodes is allowed and it causes expansion of such nodes after dropping
 5. Some bugs are still possible :)
 6. Use yarn package manager
