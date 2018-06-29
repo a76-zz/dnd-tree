@@ -75,7 +75,7 @@ const reduceRemoveNode = (state, action) => doAction(state, action, ({ node, par
 const isPossibleDropping = (atIndex, flattening, sourceView) => {
   const atView = flattening[atIndex]
   
-  // It is alwasy possible to insert sourceView before atView if they have the same level of nesting
+  // It is always possible to insert sourceView before atView if they have the same level of nesting
   if (atView.level === sourceView.level) { 
     return true
   }
@@ -131,16 +131,19 @@ const insertSourceNode = (flattening, atIndex, sourceNode) => {
     const { level: previousLevel } = previousView
 
     if (level === previousLevel) {
-      // siblings 
+      // Previous view and atView are siblings 
       const { parent: { children }, node } = previousView
       const nodeIndex = children.indexOf(node)
       children.splice(nodeIndex + 1, 0, sourceNode)
     }
 
     if (level === previousLevel + 1) {
-      // parent
+      // Previous view is the parent of the atView
       const { node: { children = [] }, node } = previousView
       node.children = children
+      // We can proxibit insertion into collapsed node on the isPossibleDropping phase
+      // But it may be less convenient for end user 
+      // So it is better just to expand collapsed group on the drop phase
       node.expanded = true
       children.unshift(sourceNode)
     }
