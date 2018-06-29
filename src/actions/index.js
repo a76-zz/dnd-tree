@@ -1,4 +1,4 @@
-import { toggleNode, removeNode, addNode, openNewNodeDialog, closeNewNodeDialog, changeNewNodeName } from './types';
+import { toggleNode, removeNode, dragNodeView, endDragNodeView, addNode, openNewNodeDialog, closeNewNodeDialog, changeNewNodeName } from './types';
 
 const toggleNodeAction = node => ({
   type: toggleNode,
@@ -31,6 +31,19 @@ const changeNewNodeNameAction = name => ({
   name
 })
 
+const dragNodeViewAction = (id, atIndex) => ({
+  type: dragNodeView,
+  id,
+  atIndex
+})
+
+const endDragNodeViewAction = (id, atIndex, originalIndex) => ({
+  type: endDragNodeView,
+  id,
+  atIndex,
+  originalIndex
+})
+
 const applyNewNodeAction = () => (dispatch, getState) => {
   const { newNodeDialog: { newNode, parent } } = getState()
   
@@ -42,6 +55,8 @@ export default {
   toggleNodeAction,
   removeNodeAction,
   addNodeAction,
+  dragNodeViewAction,
+  endDragNodeViewAction,
   openNewNodeDialogAction,
   closeNewNodeDialogAction,
   changeNewNodeNameAction,
