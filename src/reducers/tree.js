@@ -133,7 +133,8 @@ const insertSourceNode = (flattening, atIndex, sourceNode) => {
       // parent
       const { node: { children = [] }, node } = previousView
       node.children = children
-      children.push(sourceNode)
+      node.expanded = true
+      children.unshift(sourceNode)
     }
   } else {
     const { parent: { children } } = flattening[0]
