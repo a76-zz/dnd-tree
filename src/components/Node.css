@@ -4,6 +4,7 @@
   cursor: move;
   opacity: 1;
   position: relative;
+  height: 1.75rem;
 }
 
 .TreeNode-actions {
