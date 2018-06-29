@@ -11,7 +11,6 @@ import { connect } from 'react-redux'
 import actions from 'actions'
 
 import Node from 'components/Node'
-import nodeType from 'types/node'
 
 import './Tree.css'
 

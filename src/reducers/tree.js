@@ -27,7 +27,7 @@ function flattenTree(node, result=[], id={ value: 0 }, level=-1, parent=undefine
 
 // High level function which is reused in reducers
 // Action Handler should return true if action is completed successfuly
-// It should modify tree data structure in some way
+// It builds flatenning from tree data structure if actionHandler function returns true
 function doAction(state, action, actionHandler) {
   const { data } = state
   const flattening = []
@@ -74,18 +74,26 @@ const reduceRemoveNode = (state, action) => doAction(state, action, ({ node, par
 
 const isPossibleDropping = (atIndex, flattening, sourceView) => {
   const atView = flattening[atIndex]
-
-  if (atView.level === sourceView.level) {
+  
+  // It is alwasy possible to insert sourceView before atView if they have the same level of nesting
+  if (atView.level === sourceView.level) { 
     return true
   }
-
+  
+  // Sometimes it is possible to insert sourceView before atView if atView.level = sourceView.level - 1
   if (atView.level === sourceView.level - 1) {
     const previousView = flattening[atIndex - 1]
     const nextView = flattening[atIndex + 1]
 
-    return (previousView && previousView.level === sourceView.level - 1) 
-      || previousView.level === sourceView.level 
-      || (!nextView || nextView.level === atView.level - 1)
+    return (
+      ( 
+        previousView && 
+        (
+          previousView.level === sourceView.level - 1 // Insert as first and single child of flattening[atIndex-1]
+          || previousView.level === sourceView.level // Insert as last child of flattening[atIndex-1]
+        )
+      ) || !nextView // Insert as the last item of the flattening
+    ) 
   }
 
   return false
