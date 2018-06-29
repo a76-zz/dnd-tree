@@ -106,6 +106,7 @@ class Node extends Component {
               </IconButton>
             )}
             <span>{name}</span>
+            {type !== nodeType.subTask && (<span className="TreeNode-counter">{ children.length }</span>)}
             <div className="TreeNode-actions">
               {type !== nodeType.subTask && (
                 <IconButton aria-label="Add" classes={buttonStyle} onClick={this.addNodeHandler}>

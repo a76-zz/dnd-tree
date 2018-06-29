@@ -15,7 +15,8 @@ function flattenTree(node, result=[], id={ value: 0 }, level=-1, parent=undefine
       id: id.value,
       parent
     })
-    id.value++; 
+
+    id.value++
   }
   
   // Always flatten formal root node or try to flatten any other node if it is expanded
@@ -29,7 +30,7 @@ function flattenTree(node, result=[], id={ value: 0 }, level=-1, parent=undefine
 // It should modify tree data structure in some way
 function doAction(state, action, actionHandler) {
   const { data } = state
-  const flattening = [];
+  const flattening = []
 
   if (actionHandler(action)) {
     flattenTree(data, flattening)
@@ -101,7 +102,7 @@ const reduceDragNodeView = (state, { id, atIndex }) => {
       }
     })
   } else {
-    return state;
+    return state
   }
 }
 
@@ -118,8 +119,8 @@ const insertSourceNode = (flattening, atIndex, sourceNode) => {
   const view = flattening[atIndex]
 
   if (previousView) {
-    const { level } = view;
-    const { level: previousLevel } = previousView;
+    const { level } = view
+    const { level: previousLevel } = previousView
 
     if (level === previousLevel) {
       // siblings 
@@ -134,6 +135,9 @@ const insertSourceNode = (flattening, atIndex, sourceNode) => {
       node.children = children
       children.push(sourceNode)
     }
+  } else {
+    const { parent: { children } } = flattening[0]
+    children.unshift(sourceNode)
   }
 }
 
