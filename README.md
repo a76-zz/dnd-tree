@@ -24,7 +24,7 @@ So it is required to perform revers operation from flatenization to the tree dat
 
 ## Implementation assumptions
 
-1. Node counter just displays number of childrens
+1. Node counter just displays number of children
 2. Additional descriptions such as User/Level etc. are missed
 3. Users are also draggabled
 4. Dropping after collapsed nodes is allowed and it causes expansion of such nodes after dropping
