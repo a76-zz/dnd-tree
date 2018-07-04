@@ -1,8 +1,8 @@
-Drag and drop implementation is base on the [React DnD library](http://react-dnd.github.io/react-dnd/).
+Drag and drop implementation is based on the [React DnD library](http://react-dnd.github.io/react-dnd/).<br>
 [Redux](https://redux.js.org/) is used for state management.
 
-My goal is not just to create the shortest implementation but create scalable loosely coupled solution.
-I believe that Redux or its alternatives are default architectural pattern of almost any react application today.
+My goal is not just to create the shortest implementation but create scalable loosely coupled solution.<br>
+I believe Redux is default architectural pattern of almost any react application today.
 
 ## General idea
 
@@ -18,7 +18,7 @@ It allows to manage drag and drop as simple list item drag and drop.
 One siginificant difference is that not any position in the list is dropable and it is required to detect whether particular position is dropable or not.
 That logic is the most difficult and important.
 
-After drag and drop is completed on the drop phase it is necessary to detect which structural changes should be performed to receive completely equivalent vision after tree data flatenization.
+On the drop phase it is necessary to detect what structural changes should be performed to receive completely equivalent vision after tree data flatenization.
 
 So it is required to perform revers operation from flatenization to the tree data structure.
 
