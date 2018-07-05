@@ -4,8 +4,8 @@ import PropTypes from 'prop-types'
 import flow from 'lodash/flow'
 
 import {
-	DragSource,
-	DropTarget
+  DragSource,
+  DropTarget
 } from 'react-dnd'
 
 import nodeType from 'types/node'
@@ -21,38 +21,38 @@ import classNames from 'classnames'
 import './Node.css'
 
 const nodeSource = {
-	beginDrag({ view: { id }, findNodeView}) {
-		return {
+  beginDrag({ view: { id }, findNodeView}) {
+    return {
       id,
       originalIndex: findNodeView(id).index
-		}
-	},
+    }
+  },
 
-	endDrag({ findNodeView, endDragNodeView }, monitor) {
+  endDrag({ findNodeView, endDragNodeView }, monitor) {
     const { id: draggedId, originalIndex } = monitor.getItem()
     
-		const didDrop = monitor.didDrop()
+    const didDrop = monitor.didDrop()
 
-		if (!didDrop) {
+    if (!didDrop) {
       const { index: dropIndex } = findNodeView(draggedId)
       endDragNodeView(draggedId, dropIndex, originalIndex)
-		}
-	}
+    }
+  }
 }
 
 const nodeTarget = {
-	canDrop() {
-		return false
-	},
+  canDrop() {
+    return false
+  },
 
-	hover({ view: { id: overId }, findNodeView, dragNodeView }, monitor) {
-		const { id: draggedId } = monitor.getItem()
+  hover({ view: { id: overId }, findNodeView, dragNodeView }, monitor) {
+    const { id: draggedId } = monitor.getItem()
 
-		if (draggedId !== overId) {
-			const { index: overIndex } = findNodeView(overId)
-			dragNodeView(draggedId, overIndex)
-		}
-	}
+    if (draggedId !== overId) {
+      const { index: overIndex } = findNodeView(overId)
+      dragNodeView(draggedId, overIndex)
+    }
+  }
 }
 
 class Node extends Component {
@@ -95,9 +95,9 @@ class Node extends Component {
 
     return (
       connectDragSource &&
-			connectDropTarget &&
-			connectDragSource(
-				connectDropTarget(
+      connectDropTarget &&
+      connectDragSource(
+        connectDropTarget(
           <div className={nodeStyle} style={{opacity}}>
             {type !== nodeType.subTask && children.length > 0 && (
               <IconButton aria-label="Expand" classes={buttonStyle} onClick={this.toggleNodeHandler}>
